@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<html lang=en-gb dir=ltr>
+
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <title>Konnexion - Project & Stock And Finance Managements</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel=icon href=icone_konnexion.png>
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,800%7CWork+Sans:200,300%7CJosefin+Sans:100"
+    rel=stylesheet>
+  <link rel=stylesheet href=css/main.css>
+  <link rel=stylesheet href=css/animate.css>
+  <link href=/style_toaster.css rel=stylesheet>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="./style_wizard.css">
+   <script src="jquery.min.js"></script>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+<body class="uk-background-primary uk-light">
+  <div id=app></div>
+
+
+
+<script>
+
+location_current = (window.top.location.href);
+const myArr = location_current.split("/");
+
+if(myArr[3]!= "index.php"){
+  console.log('myArr ', myArr)
+   window.top.location.href="https://"+myArr[2]+"/index.php";
+}
+
+  setTimeout(function(){
+    $('#logo_loader').hide();
+}, 2000);
+
+
+</script>
+
+
+
+  <script>
+
+    var myVar;
+    var download_button_added = false;
+    var url = window.location.hostname;
+
+
+    if (document.getElementsByClassName("login-form")[0] != undefined) {
+      var form = document.getElementsByClassName("login-form")[0];
+      $(".form").append('<div style=" margin-top: 20px;" > <a type="button" style="font-size: 13px" data-toggle= "modal" data-target="#ResetModal" id="rayan_submit"> Mot de passe oublié ?</a></div>')
+
+
+      button.addEventListener("click", function () {
+
+      });
+    }
+
+    function sendEmail() {
+      mail = document.getElementById("resetmail").value;
+      $.ajax({
+         url: 'https://'+url+'/k-webservice/public/kuser/send_reset_password',
+
+        type: 'POST',
+        data: 'email=' + mail,
+        success: function (data) {
+          if (data == 'Un mail de rénitialisation a bien était envoyé') {
+            toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+            toastr["success"](data);
+          }
+          else {
+            toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+            toastr["error"](data);
+          }
+
+        }
+      });
+
+    }
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="script_toaster.js"></script>
+
+
+
+
+
+
+
+
+
+  <div class="modal fade" id="ResetModal" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="padding-left: 110px; color: #1e1b5d;">Réinitialisation du mot de passe</h4>
+        </div>
+        <div class="modal-body">
+          <fieldset>
+            <h3 class="fs-subtitle" style="color:#1e1b5d">Veuillez saisir l'adresse e-mail associé à votre compte pour
+              recevoir un lien de récupération. </h3>
+            <div class="col-md-9">
+              <div class="input-container" style=" padding-left:65px;">
+                <p class="fs-subtitle" style="color:#1e1b5d"> E-mail : </p>
+                <input type="mail" name="mail" id="resetmail" placeholder=" yourmail@exemple.com" autofocus="1"
+                  data-rule-required="1" data-msg-required="Ce champ est requis." aria-required="true"
+                  style=" height:30px; width:400px;" />
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <button type="button" id="sendpass" class="btn btn-success" data-dismiss="modal"
+            onclick="sendEmail()">Envoyer</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="success-container" style="display:none;margin-top:10%">
+    <div class="row">
+      <div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
+        <div class="icon">
+          <span class="glyphicon glyphicon-ok"></span>
+        </div>
+        <h1 style="color:#1e1b5d">Félicitation</h1>
+        <p style="color:#1e1b5d">Votre compte est préconfiguré
+          <br style="color:#1e1b5d">Profitez de votre ERP
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+
+
+
+
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title" id="exampleModalLabel" style="color:black">Formulaire d'initialisation </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+
+
+
+
+
+          <form id="msform">
+            <ul style="color:#1e1b5d" id="progressbar">
+              <li class="active" style="color:#1e1b5d">Information compte</li>
+              <li style="color:#1e1b5d">Création prospect</li>
+              <li style="color:#1e1b5d">Création client</li>
+              <br />
+              <br />
+              <br />
+
+              <li style="color:#1e1b5d;margin-left: 20%">Création produit</li>
+              <li style="color:#1e1b5d;">Création compte bancaire</li>
+              <br />
+              <br />
+              <br />
+
+            </ul>
+
+
+
+            <fieldset>
+              <h2 class="fs-title" style="color:#1e1b5d">Information du compte</h2>
+              <h3 class="fs-subtitle" style="color:#1e1b5d">Etape 1</h3>
+
+
+              <input type="text" name="first_name" id="first_name" placeholder="Prénom" readonly />
+              <input type="text" name="last_name" id="last_name" placeholder="Nom" readonly />
+              <input type="tel" name="phone" id="phone" placeholder="Téléphone" readonly />
+               <select class="form-control" id="type_entreprise">
+                  <option>Choisissez votre domaine</option>
+                  <option>METIERS D'EXPERTISE – CONSULTING ET MANAGEMENT (Architecture globale du projet)</option>
+                  <option>METIERS D'AGENCE – STUDIO DE DESIGN GLOBAL</option>
+                  <option>BUREAUX D'ETUDES - INGENIERIE</option>
+                  <option>METIERS DE L'HABITAT - AGENCE IMMOBILIERE</option>
+                  <option>METIERS DU WEB - DEVELOPPEMENT</option>
+                  <option>FOIRE MARSEILLE 2022</option>
+
+                </select>
+              <input type="button" name="next" class="next action-button" value="Suivant" id="suivant_profile_admin"/>
+            </fieldset>
+
+
+
+
+
+
+
+
+
+
+            <fieldset>
+              <h2 class="fs-title" style="color:#1e1b5d">Création des prospects</h2>
+              <h3 class="fs-subtitle" style="color:#1e1b5d">Remplir les informations</h3>
+              <input type="text" id="first_name_prospect1" placeholder="Prénom" />
+              <input type="text" id="last_name_prospect1" placeholder="Nom" />
+              <input type="text" id="phone_prospect1" placeholder="Téléphone" />
+              <input type="email" id="email_user_prospect1" name="email_lead" placeholder="Email" />
+              <input type="button" name="previous" class="previous action-button" value="Précedent" />
+              <input type="button" name="next" class="next action-button" value="Suivant" id="suivant_prospect" />
+            </fieldset>
+
+
+            <fieldset>
+              <h2 class="fs-title" style="color:#1e1b5d">Création des clients</h2>
+              <h3 class="fs-subtitle" style="color:#1e1b5d">Remplir les informations</h3>
+              <input type="text" id="societe_client1" placeholder="Société" />
+              <input type="text" id="name_client1" placeholder="Prénom" />
+              <input type="text" id="phone_client1" placeholder="Téléphone" />
+              <input type="email" id="email_user_client1" placeholder="Email" />
+              <input type="button" name="previous" class="previous action-button" value="Précedent" />
+              <input type="button" name="next" class="next action-button" value="Suivant" id="suivant_client" />
+            </fieldset>
+
+
+
+            <fieldset>
+              <h2 class="fs-title" style="color:#1e1b5d">Création d'un produit</h2>
+              <h3 class="fs-subtitle" style="color:#1e1b5d">Remplir les informations</h3>
+
+              <select class="form-control" id="nom_type_produit_select">
+                <option>type de produit</option>
+                <option>standard</option>
+                <option>service</option>
+
+              </select>
+              <br /><br />
+
+              <div id="champs_produit_standard" style="display:none">
+                <input type="text" name="name_produit" id="name_produit" placeholder="Nom du produit" />
+                <label for="points" style="color:#1e1b5d">prix d'achat:</label>
+                <input type="number" id="prix_achat" name="prix_achat" step="0.01">
+                <label for="points" style="color:#1e1b5d">prix de vente:</label>
+                <input type="number" class="prix_vente" name="prix_vente" step="0.01">
+              </div>
+              <div id="champs_produit_service" style="display:none">
+                <input type="text" name="name_service" id="name_service" placeholder="Nom du service" />
+                <label for="points" style="color:#1e1b5d">Tarif:</label>
+
+                <input type="number" class="prix_vente_service" name="prix_vente_service" step="0.01">
+              </div>
+
+              <input type="button" name="previous" class="previous action-button" value="Précedent" />
+              <input type="button" name="next" class="next action-button" value="Suivant" id="suivant_produit" />
+            </fieldset>
+
+
+            <fieldset>
+              <h2 class="fs-title" style="color:#1e1b5d">Ajout d'un compte bancaire</h2>
+              <h3 class="fs-subtitle" style="color:#1e1b5d">Remplir les informations</h3>
+
+              <input type="text" name="titre_compte" id="titre_compte" placeholder="titre du compte" />
+              <input type="date" name="date_ouverture_compte" id="date_ouverture_compte"
+                placeholder="date d'ouverture du compte" />
+              <input type="text" name="solde_ouverture" id="solde_ouverture" placeholder="solde à l'ouverture" />
+				<input type="text" name="solde_ouverture" id="rib" placeholder="RIB" />
+				<input type="text" name="solde_ouverture" id="bic" placeholder="BIC" />
+
+
+              <input type="button" name="previous" class="previous action-button" value="Précedent" />
+              <input type="submit" name="submit" class="submit action-button" value="Valider" id="suivant_bank" />
+            </fieldset>
+
+
+
+
+
+
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+    <script src="./script_wizard.js"></script>
+
+</body>
+
+</html>
